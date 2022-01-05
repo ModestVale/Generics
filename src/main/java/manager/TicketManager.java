@@ -4,6 +4,7 @@ import domain.Ticket;
 import repository.TicketRepository;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class TicketManager {
     private final TicketRepository ticketRepository;
@@ -13,7 +14,7 @@ public class TicketManager {
     }
 
 
-    public Ticket[] findAll(String from, String to) {
+    public Ticket[] findAll(String from, String to, Comparator<Ticket> comparator) {
         Ticket[] allTickets = ticketRepository.findAll();
         Ticket[] outputTickets = new Ticket[0];
         for (Ticket currentTicket : allTickets) {
@@ -27,7 +28,7 @@ public class TicketManager {
             }
         }
 
-        Arrays.sort(outputTickets);
+        Arrays.sort(outputTickets, comparator);
         return outputTickets;
     }
 }

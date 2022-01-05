@@ -20,11 +20,11 @@ public class TicketManagerTest {
     @InjectMocks
     private TicketManager productManager;
 
-    private Ticket ticket1 = new Ticket(1,300,"REN","SVO", 120);
-    private Ticket ticket2 = new Ticket(2,200,"REN","SVO", 124);
-    private Ticket ticket3 = new Ticket(3,100,"REN","SVO", 126);
-    private Ticket ticket4 = new Ticket(4,100,"REN","DME", 133);
-    private Ticket ticket5 = new Ticket(5,10000,"SVO","REN", 140);
+    private Ticket ticket1 = new Ticket(1, 300, "REN", "SVO", 150);
+    private Ticket ticket2 = new Ticket(2, 200, "REN", "SVO", 124);
+    private Ticket ticket3 = new Ticket(3, 100, "REN", "SVO", 126);
+    private Ticket ticket4 = new Ticket(4, 100, "REN", "DME", 133);
+    private Ticket ticket5 = new Ticket(5, 10000, "SVO", "REN", 140);
 
     @Test
     public void shouldFindAllReturnRelatedTicketIfExist() {
@@ -34,7 +34,7 @@ public class TicketManagerTest {
         expectedTickets[1] = ticket2;
         expectedTickets[2] = ticket1;
 
-        Ticket[] actualTickets = productManager.findAll("SVO", "REN");
+        Ticket[] actualTickets = productManager.findAll("SVO", "REN", new TicketByPriceAscComparator());
 
         assertArrayEquals(expectedTickets, actualTickets);
     }
@@ -43,7 +43,20 @@ public class TicketManagerTest {
     public void shouldFindAllReturnEmptyArrayIfNotExist() {
         createRepositoryMock();
         Ticket[] expectedTickets = new Ticket[0];
-        Ticket[] actualTickets = productManager.findAll("SVO", "VKO");
+        Ticket[] actualTickets = productManager.findAll("SVO", "VKO", new TicketByPriceAscComparator());
+
+        assertArrayEquals(expectedTickets, actualTickets);
+    }
+
+    @Test
+    public void shouldFindAllReturnRelatedSortedByTravelTimeTicketIfExist() {
+        createRepositoryMock();
+        Ticket[] expectedTickets = new Ticket[3];
+        expectedTickets[0] = ticket2;
+        expectedTickets[1] = ticket3;
+        expectedTickets[2] = ticket1;
+
+        Ticket[] actualTickets = productManager.findAll("SVO", "REN", new TicketByTravelTimeAscComparator());
 
         assertArrayEquals(expectedTickets, actualTickets);
     }

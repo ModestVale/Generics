@@ -20,11 +20,11 @@ public class TicketManagerTest {
     @InjectMocks
     private TicketManager productManager;
 
-    private Ticket ticket1 = new Ticket(1,300,"REN","SVO", 120);
-    private Ticket ticket2 = new Ticket(2,200,"REN","SVO", 124);
-    private Ticket ticket3 = new Ticket(3,100,"REN","SVO", 126);
-    private Ticket ticket4 = new Ticket(4,100,"REN","DME", 133);
-    private Ticket ticket5 = new Ticket(5,10000,"SVO","REN", 140);
+    private Ticket ticket1 = new Ticket(1, 300, "REN", "SVO", 120);
+    private Ticket ticket2 = new Ticket(2, 200, "REN", "SVO", 124);
+    private Ticket ticket3 = new Ticket(3, 100, "REN", "SVO", 126);
+    private Ticket ticket4 = new Ticket(4, 100, "REN", "DME", 133);
+    private Ticket ticket5 = new Ticket(5, 10000, "SVO", "REN", 140);
 
     @Test
     public void shouldFindAllReturnRelatedTicketIfExist() {

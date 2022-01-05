@@ -56,8 +56,7 @@ public class Ticket implements Comparable<Ticket> {
         this.travelTime = travelTime;
     }
 
-    public Ticket(int id, int price, String arrivalAirport, String departureAirport, int travelTime)
-    {
+    public Ticket(int id, int price, String arrivalAirport, String departureAirport, int travelTime) {
         this.id = id;
         this.price = price;
         this.arrivalAirport = arrivalAirport;

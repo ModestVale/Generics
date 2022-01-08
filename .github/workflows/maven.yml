@@ -13,4 +13,4 @@ jobs: # какие задачи делаем
         with:
           java-version: 11 # версия для установки
       - name: Build with Maven
-        run: mvn -B -e verify # запускаем Maven
+        run: mvn -B -e verify # запускаем Maven 

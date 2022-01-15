@@ -25,14 +25,20 @@ public class TicketManagerTest {
     private Ticket ticket3 = new Ticket(3, 100, "REN", "SVO", 126);
     private Ticket ticket4 = new Ticket(4, 100, "REN", "DME", 133);
     private Ticket ticket5 = new Ticket(5, 10000, "SVO", "REN", 140);
+    private Ticket ticket6 = new Ticket(6, 10, "REN", "SVO", 130);
+    private Ticket ticket7 = new Ticket(7, 250, "REN", "SVO", 100);
+    private Ticket ticket8 = new Ticket(7, 350, "REN", "SVO", 180);
 
     @Test
     public void shouldFindAllReturnRelatedTicketIfExist() {
         createRepositoryMock();
-        Ticket[] expectedTickets = new Ticket[3];
-        expectedTickets[0] = ticket3;
-        expectedTickets[1] = ticket2;
-        expectedTickets[2] = ticket1;
+        Ticket[] expectedTickets = new Ticket[6];
+        expectedTickets[0] = ticket6;
+        expectedTickets[1] = ticket3;
+        expectedTickets[2] = ticket2;
+        expectedTickets[3] = ticket7;
+        expectedTickets[4] = ticket1;
+        expectedTickets[5] = ticket8;
 
         Ticket[] actualTickets = productManager.findAll("SVO", "REN", new TicketByPriceAscComparator());
 
@@ -51,10 +57,13 @@ public class TicketManagerTest {
     @Test
     public void shouldFindAllReturnRelatedSortedByTravelTimeTicketIfExist() {
         createRepositoryMock();
-        Ticket[] expectedTickets = new Ticket[3];
-        expectedTickets[0] = ticket2;
-        expectedTickets[1] = ticket3;
-        expectedTickets[2] = ticket1;
+        Ticket[] expectedTickets = new Ticket[6];
+        expectedTickets[0] = ticket7;
+        expectedTickets[1] = ticket2;
+        expectedTickets[2] = ticket3;
+        expectedTickets[3] = ticket6;
+        expectedTickets[4] = ticket1;
+        expectedTickets[5] = ticket8;
 
         Ticket[] actualTickets = productManager.findAll("SVO", "REN", new TicketByTravelTimeAscComparator());
 
@@ -62,12 +71,15 @@ public class TicketManagerTest {
     }
 
     private void createRepositoryMock() {
-        Ticket[] tickets = new Ticket[5];
+        Ticket[] tickets = new Ticket[8];
         tickets[0] = ticket1;
         tickets[1] = ticket2;
         tickets[2] = ticket3;
         tickets[3] = ticket4;
         tickets[4] = ticket5;
+        tickets[5] = ticket6;
+        tickets[6] = ticket7;
+        tickets[7] = ticket8;
 
         doReturn(tickets).when(repository).findAll();
     }
